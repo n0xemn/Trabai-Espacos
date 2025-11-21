@@ -7,12 +7,14 @@ public class Main {
         while(true) {
             System.out.println(" -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n\n 1: Espaço \n 2: Usuario \n 3: Reserva \n -------------------------------------------------------------------------------------------------------------- ");
             escolha = scanner.nextInt();
+            Centro.limparTerminal();
             switch (escolha) {
                 case 1:
 
                     while (true) {
                         System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Espaços \n 2: Adicionar Espaço novo \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
                         escolha = scanner.nextInt();
+                        Centro.limparTerminal();
                         switch (escolha) {
                             case 1:
 
@@ -41,6 +43,7 @@ public class Main {
 
                                 System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Adicionar uma sala \n 2: Adicionar uma quadra \n 3: Adicionar um auditório \n 4: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
                                 escolha = scanner.nextInt();
+                                Centro.limparTerminal();
                                 switch (escolha) {
                                     case 1:
 
@@ -57,6 +60,7 @@ public class Main {
                                         tarifaaux = scanner.nextDouble();
 
                                         Sala sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
+                                        Centro.addEspaco(sala);
 
                                         break;
                                     case 2:
@@ -74,6 +78,7 @@ public class Main {
                                         tarifaaux = scanner.nextDouble();
 
                                         Quadra quadra = new Quadra(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadraaux);
+                                        Centro.addEspaco(quadra);
 
                                         break;
                                     case 3:
@@ -97,6 +102,7 @@ public class Main {
                                         tarifaaux = scanner.nextDouble();
 
                                         Auditorio auditorio = new Auditorio(idaux, capacidadeaux, nomeaux, tarifaaux, temProjetoraux);
+                                        Centro.addEspaco(auditorio);
 
                                         break;
                                     default:
@@ -117,8 +123,55 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println(" "+ escolha);
-                    // ver lista de usuarios e cadastrar um novo usuario
+                    
+                    while (true) {
+                        System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Usuarios \n 2: Adicionar Usuario novo \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
+                        escolha = scanner.nextInt();
+                        Centro.limparTerminal();
+                        switch (escolha) {
+                            case 1:
+
+                                if (Centro.getUsuarios().size() == 0) {
+                                    System.out.println("Nenhum espaço foi cadastrado.");
+                                }
+                                else {
+                                    for (Usuario it : Centro.getUsuarios()) {
+                                        it.exibirInfo();
+                                    }
+                                }
+                                break;
+                            case 2:
+
+                                int idaux;
+                                String nomeaux, emailaux, resposta;
+                                boolean flagaux = false;
+
+                                System.out.println("Digite o ID do Usuario");
+                                idaux = scanner.nextInt();
+                                System.out.println("Digite o nome do Usuario");
+                                scanner.nextLine();
+                                nomeaux = scanner.nextLine();
+                                System.out.println("Digite o email do Usuario");
+                                emailaux = scanner.nextLine();
+                                System.out.println("O Usuario é uma administrador? (responda com \"sim\" ou \"nao\"");
+                                resposta = scanner.nextLine();
+                                if (resposta == "sim") {
+                                    flagaux = true;
+                                }
+                                else {
+                                    flagaux = false;
+                                }
+
+                                Usuario usuario = new Usuario(idaux, nomeaux, emailaux, flagaux);
+                                Centro.addUsuario(usuario);
+                                break;
+                            default:
+                                break;
+                        }
+                        if (escolha == 3) {
+                            break;
+                        }
+                    }
                     break;
                 case 3:
                     System.out.println(" "+ escolha);

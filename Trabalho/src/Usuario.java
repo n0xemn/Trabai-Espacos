@@ -1,15 +1,22 @@
 public class Usuario {
-    // private Reserva reserva; n sei como fazer ainda
+    private Reserva associacao;
     private int id;
     private String nome;
     private String email;
     private boolean flag = false;
 
+    // um construtor de usuario sem uma reserva
     public Usuario(int id, String nome, String email, boolean flag) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.flag = flag;
+    }
+
+    // um construtor de usuario com uma reserva
+    public Usuario(int id, String nome, String email, boolean flag, Reserva associacao) {
+        this(id, nome, email, flag);
+        this.associacao = associacao;
     }
 
     private String obterTipo() {
@@ -20,7 +27,7 @@ public class Usuario {
         }
     }
 
-    public void exibirInfo() { // provavelmente vou mudar pra toString
+    public void exibirInfo() {
         System.out.println("ID: " + id);
         System.out.println("Nome: " + nome);
         System.out.println("Email: " + email);

@@ -30,8 +30,16 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         return Centro.totalReservas;
     }
 
-    public static List<Espaco> getEspacos() { // pra poder fazer for each
+    public static List<Espaco> getEspacos() { // pra poder fazer for each, pra conseguir listar na tela
         return Centro.espacos;
+    }
+
+    public static List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public static List<Reserva> getReservas() {
+        return reservas;
     }
 
     public static void limparTerminal() { // metodo pra limpar o terminal (não fui eu que fiz)

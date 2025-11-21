@@ -4,7 +4,6 @@ public class Auditorio extends Espaco{
     public Auditorio(int id, int capacidade, String nome, double tarifaBase, boolean temRefletor){
         super(id, capacidade, nome, tarifaBase); // uma refatoração de construtor pra eviatr usar seters e o codigo ficar grande
         this.temRefletor = temRefletor;
-        Centro.addEspaco(this); // pra adicionar na lista de espaços direto
     }
 
     // o metodo abstrato sendo implementado

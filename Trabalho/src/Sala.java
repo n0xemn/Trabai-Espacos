@@ -4,7 +4,6 @@ public class Sala extends Espaco{
     public Sala(int id, int capacidade, String nome, double tarifaBase, String tipoDeQuadro){
         super(id, capacidade, nome, tarifaBase);
         this.tipoDeQuadro = tipoDeQuadro;
-        Centro.addEspaco(this);
     }
 
     public double calcularCusto(int hora){

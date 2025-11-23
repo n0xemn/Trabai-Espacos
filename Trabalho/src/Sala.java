@@ -6,12 +6,11 @@ public class Sala extends Espaco{
         this.tipoDeQuadro = tipoDeQuadro;
     }
 
-    public double calcularCusto(int hora){
-        return hora * super.getTarifaBase();
+    public double calcularCusto(int duracaoHoras){
+        return duracaoHoras * super.getTarifaBase();
     }
 
-    @Override
-    public String toString(){
-        return "ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadro: "+ this.tipoDeQuadro +"\nTarifa: "+ super.getTarifaBase();
+    public void exibirInfo(){
+        System.out.println("ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadro: "+ this.tipoDeQuadro +"\nTarifa: "+ super.getTarifaBase());
     }
 }

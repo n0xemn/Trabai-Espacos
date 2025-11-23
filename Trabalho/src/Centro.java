@@ -22,6 +22,10 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         Centro.totalReservas++;
     }
 
+    public static void removeReserva(Reserva reser){
+        Centro.reservas.remove(reser);
+    }
+
     public static int getTotalEspacos() {
         return Centro.totalEspacos;
     }
@@ -41,6 +45,15 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
     public static List<Reserva> getReservas() {
         return reservas;
     }
+
+
+
+
+
+
+
+
+
 
     public static void limparTerminal() { // metodo pra limpar o terminal (não fui eu que fiz)
         try {

@@ -10,8 +10,7 @@ public class Quadra extends Espaco{
         return hora * super.getTarifaBase();
     }
 
-    @Override
-    public String toString(){
-        return "ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadra: "+ this.tipoDeQuadra +"\nTarifa: "+ super.getTarifaBase();
+    public void exibirInfo(){
+        System.out.println("ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadra: "+ this.tipoDeQuadra +"\nTarifa: "+ super.getTarifaBase());
     }
 }

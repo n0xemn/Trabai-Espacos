@@ -15,11 +15,14 @@ public abstract class Espaco {
 
     // classe abstrata que ele pediu, ela é abstrata pra que todas as subclasses sejam obrigadas a implementar seu proprio calcCusto
     public abstract double calcularCusto(int hora);
+    
+    public abstract void exibirInfo();
 
     // fiz um get pq o atributo é privado e não tem como acessar de fora sem um metodo
     public double getTarifaBase() {
         return tarifaBase;
     }
+
 
     public int getID() {
         return id;

@@ -11,8 +11,14 @@ public class Auditorio extends Espaco{
         return hora * super.getTarifaBase();
     }
 
-    @Override
-    public String toString(){
-        return "ID: "+ super.getID() +"\nCapacidade: "+ super.getCapacidade() +"\nNome: "+ super.getNome() +"\nTarifa Base: "+ super.getTarifaBase();
+    public void exibirInfo(){
+        String refletor;
+        if (temRefletor) {
+            refletor = "sim";
+        }
+        else {
+            refletor = "nao";
+        }
+        System.out.println("ID: "+ super.getID() +"\nCapacidade: "+ super.getCapacidade() +"\nNome: "+ super.getNome() +"\nTarifa: "+ super.getTarifaBase() +"\nRefletor: "+ refletor);
     }
 }

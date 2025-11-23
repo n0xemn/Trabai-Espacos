@@ -22,16 +22,7 @@ public class Main {
                                     System.out.println("Nenhum espaço foi cadastrado.");
                                 }
                                 for (Espaco it : Centro.getEspacos()) {
-                                    
-                                    if (it instanceof Sala) {
-                                        System.out.println(((Sala) it).toString());
-                                    }
-                                    else if (it instanceof Quadra) {
-                                        System.out.println(((Quadra) it).toString());
-                                    }
-                                    else if (it instanceof Auditorio) {
-                                        System.out.println(((Auditorio) it).toString());
-                                    }
+                                    it.exibirInfo();
                                 }
                                 break;
                             case 2:
@@ -132,7 +123,7 @@ public class Main {
                             case 1:
 
                                 if (Centro.getUsuarios().size() == 0) {
-                                    System.out.println("Nenhum espaço foi cadastrado.");
+                                    System.out.println("Nenhum Usuário foi cadastrado.");
                                 }
                                 else {
                                     for (Usuario it : Centro.getUsuarios()) {
@@ -175,6 +166,90 @@ public class Main {
                     break;
                 case 3:
                     System.out.println(" "+ escolha);
+                    // listar reservas, adicionar reserva, 
+                    while (true) {
+                        System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Reservas \n 2: Adicionar Reserva nova \n 3: Cancelar Reserva \n 4: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
+                        escolha = scanner.nextInt();
+                        Centro.limparTerminal();
+                        switch (escolha) {
+                            case 1:
+
+                                if (Centro.getTotalReservas() == 0) {
+                                    System.out.println("Nenhuma Reserva foi cadastrado.");
+                                }
+                                else {
+                                    for (Reserva it : Centro.getReservas()) {
+                                        it.exibirInfo();
+                                    }
+                                }
+                                break;
+                            case 2:
+
+                                while (true) {
+                                    System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Adicionar uma reserva para um usuario já cadastrado \n 2: Adicionar uma reserva para um novo usuario \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
+                                    escolha = scanner.nextInt();
+                                    Centro.limparTerminal();
+                                    switch (escolha) {
+                                        case 1:
+                                            if (Centro.getEspacos().size() == 0 || Centro.getTotalEspacos() == 0) {
+                                                System.out.println("Impossível fazer uma reserva");
+                                                break;
+                                            }
+
+                                            int contador = 1, escolherUsu, escolherEspa;
+                                            System.out.println("Digite o número correspondente ao usuario pra quem você quer fazer a reserva.");
+                                            for (Usuario it : Centro.getUsuarios()) {
+                                                System.out.println(contador +": "+ it.getNome());
+                                                contador++;
+                                            }
+                                            contador = 1;
+                                            escolherUsu = scanner.nextInt(); // pra usar na função get da lista de usuario
+                                            
+                                            System.out.println("Digite o número correspondente do espaço que você quer reservar");
+                                            for (Espaco it : Centro.getEspacos()) {
+                                                System.out.println(contador +": ");
+                                                it.exibirInfo();
+                                                contador++;
+                                            }
+                                            escolherEspa = scanner.nextInt(); // pra usar no metodo get da lista de espacos
+
+                                            int anoaux, mesaux,  diaaux, horaInicioaux, horaaux;
+
+                                            System.out.println("Digite o ano de início da reserva");
+                                            anoaux = scanner.nextInt();
+                                            System.out.println("Digite o mês de início da reserva");
+                                            mesaux = scanner.nextInt();
+                                            System.out.println("Digite o dia de início da reserva");
+                                            diaaux = scanner.nextInt();
+                                            System.out.println("Digite a hora de início da reserva");
+                                            horaInicioaux = scanner.nextInt();
+                                            System.out.println("Digite a duração em horas da reserva");
+                                            horaaux = scanner.nextInt();
+
+                                            DataHora inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
+
+                                            // pra verificar se o horario bate é só comparar usando um for each pela lista de reserva
+
+                                            break;
+                                    
+                                        default:
+                                            break;
+                                    }
+
+                                    if (escolha == 3) {
+                                        break;
+                                    }
+                                }
+                                break;
+                            case 3:
+                                break;
+                            
+
+                        }
+                        if (escolha == 3) {
+                            break;
+                        }
+                    }
                     break;
 
                 default:

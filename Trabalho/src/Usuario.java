@@ -1,22 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
-    private Reserva associacao;
+    private List<Reserva> associacoes;
+    private int totalAssociacao;
     private int id;
     private String nome;
     private String email;
     private boolean flag = false;
 
-    // um construtor de usuario sem uma reserva
     public Usuario(int id, String nome, String email, boolean flag) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.flag = flag;
-    }
-
-    // um construtor de usuario com uma reserva
-    public Usuario(int id, String nome, String email, boolean flag, Reserva associacao) {
-        this(id, nome, email, flag);
-        this.associacao = associacao;
+        this.totalAssociacao = 0;
+        this.associacoes = new ArrayList<>();
     }
 
     private String obterTipo() {
@@ -32,10 +31,22 @@ public class Usuario {
         System.out.println("Nome: " + nome);
         System.out.println("Email: " + email);
         System.out.println("Tipo: " + obterTipo());
+        System.out.println("Total de Reservas: "+ this.getTotalAssociacao() +"\n");
     }
 
-    public void indicarAssociacao() { // acho que faz mais sentido a associação ser com a reserva que esse usuario tem
-        System.out.println("Usuario " + nome + " associa como " + obterTipo());
+    public void indicarAssociacoes() {
+        for (Reserva it : associacoes) {
+            it.exibirInfo();
+        }
+    }
+
+    public void addAssociacao(Reserva reser){
+        this.associacoes.add(reser);
+        this.totalAssociacao++;
+    }
+
+    public void removeAssociacao(Reserva reser){
+        this.associacoes.remove(reser);
     }
 
     // n sei se vai precisar desses seters e geters todos
@@ -51,23 +62,11 @@ public class Usuario {
         return email; 
     }
 
-    public boolean getFlag() { 
-        return flag; 
-    }
-
-    public void setId(int id) { 
-        this.id = id; 
-    }
-
-    public void setNome(String nome) { 
-        this.nome = nome; 
-    }
-
-    public void setEmail(String email) { 
-        this.email = email; 
-    }
-
     public void setFlag(boolean flag) { 
         this.flag = flag; 
+    }
+
+    public int getTotalAssociacao() {
+        return totalAssociacao;
     }
 }

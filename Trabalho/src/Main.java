@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.Scanner; // deixar ver as associações dos usuarios
 
 public class Main {
     public static void main(String[] args) {
@@ -123,14 +123,23 @@ public class Main {
                         Centro.limparTerminal();
                         switch (escolha) {
                             case 1:
-
+                                int contador = 1, escolherUsu;
                                 if (Centro.getUsuarios().size() == 0) {
                                     System.out.println("Nenhum Usuário foi cadastrado.");
                                 }
                                 else {
+                                    System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número do usuário se você quer ver a sua lista de reservas");
                                     for (Usuario it : Centro.getUsuarios()) {
+                                        System.out.println(contador +":");
                                         it.exibirInfo();
+                                        contador++;
                                     }
+                                    System.err.println(" ou \"-1\" pra voltar -------------------------------------------------------------------------------------------------------------- \n ");
+                                    escolherUsu = scanner.nextInt();
+                                    if (escolherUsu == -1) {
+                                        break;
+                                    }
+                                    Centro.getUsuarios().get(escolherUsu - 1).indicarAssociacoes();
                                 }
                                 break;
                             case 2:

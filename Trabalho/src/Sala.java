@@ -11,6 +11,11 @@ public class Sala extends Espaco{
     }
 
     public void exibirInfo(){
-        System.out.println("ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadro: "+ this.tipoDeQuadro +"\nTarifa: "+ super.getTarifaBase());
+        System.out.println("ID: "+ super.getID());
+        System.out.println("Nome: "+ super.getNome());
+        System.out.println("Capacidade: "+ super.getCapacidade());
+        System.out.println("Quadro: "+ this.tipoDeQuadro);
+        System.out.printf("Tarifa: R$%.2lf\n\n", super.getTarifaBase());
+        
     }
 }

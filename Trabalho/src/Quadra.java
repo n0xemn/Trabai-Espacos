@@ -11,6 +11,10 @@ public class Quadra extends Espaco{
     }
 
     public void exibirInfo(){
-        System.out.println("ID: "+ super.getID() +"\nNome: "+ super.getNome() +"\nCapacidade: "+ super.getCapacidade() +"\nQuadra: "+ this.tipoDeQuadra +"\nTarifa: "+ super.getTarifaBase());
+        System.out.println("ID: "+ super.getID());
+        System.out.println("Nome: "+ super.getNome());
+        System.out.println("Capacidade: "+ super.getCapacidade());
+        System.out.println("Quadra: "+ this.tipoDeQuadra);
+        System.out.printf("Tarifa: R$%.2lf\n\n", super.getTarifaBase());
     }
 }

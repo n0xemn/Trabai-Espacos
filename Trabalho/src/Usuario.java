@@ -47,6 +47,7 @@ public class Usuario {
 
     public void removeAssociacao(Reserva reser){
         this.associacoes.remove(reser);
+        this.totalAssociacao--;
     }
 
     // n sei se vai precisar desses seters e geters todos

@@ -54,7 +54,8 @@ public class Reserva {
         System.out.println("Nome do Espaco: "+ this.espaco.getNome());
         System.out.println("Nome do Usuario: "+ this.usuario.getNome());
         System.out.println("Data e hora do Início: "+ this.dataHoraInicio.formatar()); 
-        System.out.println("Tempo de duração: "+ this.duracaoHoras +"h\n");
+        System.out.println("Tempo de duração: "+ this.duracaoHoras +"h");
+        System.out.printf("Valor da reserva: R$ %.2lf\n\n", this.calcularValor());
     }
 
     public Espaco getEspaco() { 

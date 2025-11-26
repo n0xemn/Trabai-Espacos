@@ -19,6 +19,10 @@ public class Auditorio extends Espaco{
         else {
             refletor = "nao";
         }
-        System.out.println("ID: "+ super.getID() +"\nCapacidade: "+ super.getCapacidade() +"\nNome: "+ super.getNome() +"\nTarifa: "+ super.getTarifaBase() +"\nRefletor: "+ refletor);
+        System.out.println("ID: "+ super.getID());
+        System.out.println("Nome: "+ super.getNome());
+        System.out.println("Capacidade: "+ super.getCapacidade());
+        System.out.println("Refletor: "+ refletor);
+        System.out.printf("Tarifa: R$%.2lf\n\n", super.getTarifaBase());
     }
 }

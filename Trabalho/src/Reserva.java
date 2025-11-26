@@ -6,6 +6,9 @@ public class Reserva {
     private boolean status;
 
     public Reserva(Espaco espaco, Usuario usuario, DataHora dataHoraInicio, int duracaoHoras) {
+        if (dataHoraInicio.getHora() + duracaoHoras >= 24) {
+            // lancar uma excessao
+        }
         this.espaco = espaco;
         this.usuario = usuario;
         this.dataHoraInicio = dataHoraInicio;
@@ -13,9 +16,12 @@ public class Reserva {
         this.status = false;
     }
 
-    public void confirmar() { // talvez fazer a verificação de horário aqui
+    public void confirmar() {
         if (status) {
             System.out.println("Essa reserva já foi confirmada!");
+        }
+        else if (Centro.verificacao(this)) {
+            System.out.println("Não foi possivel confirmar a reserva por conta de conflito de horários.");
         }
         else {
             this.status = true;

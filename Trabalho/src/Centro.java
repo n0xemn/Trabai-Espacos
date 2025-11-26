@@ -26,6 +26,34 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         Centro.reservas.remove(reser);
     }
 
+    public static void removerReservaIndice(int indice){
+        Centro.reservas.remove(indice);
+    }
+
+    public static boolean verificacao(Reserva reservaTemp){
+        for (Reserva it : Centro.reservas) {
+            if (it.getEspaco() == reservaTemp.getEspaco()) {
+                if (it.getDataHoraInicio().getAno() == reservaTemp.getDataHoraInicio().getAno()) {
+                    if (it.getDataHoraInicio().getMes() == reservaTemp.getDataHoraInicio().getMes()) {
+                        if (it.getDataHoraInicio().getDia() == reservaTemp.getDataHoraInicio().getDia()) {
+                            if (it.getDataHoraInicio().getHora() < reservaTemp.getDataHoraInicio().getHora()) {
+                                if (it.getDataHoraInicio().getHora() + it.getDuracaoHoras() >= reservaTemp.getDataHoraInicio().getHora()) {
+                                    return true;
+                                }
+                            }
+                            else if (reservaTemp.getDataHoraInicio().getHora() < it.getDataHoraInicio().getHora()) {
+                                if (reservaTemp.getDataHoraInicio().getHora() + reservaTemp.getDuracaoHoras() >= it.getDataHoraInicio().getHora()) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static int getTotalEspacos() {
         return Centro.totalEspacos;
     }
@@ -45,15 +73,6 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
     public static List<Reserva> getReservas() {
         return reservas;
     }
-
-
-
-
-
-
-
-
-
 
     public static void limparTerminal() { // metodo pra limpar o terminal (não fui eu que fiz)
         try {

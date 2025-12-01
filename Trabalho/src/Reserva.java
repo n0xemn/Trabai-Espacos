@@ -3,11 +3,11 @@ public class Reserva {
     private Usuario usuario;
     private DataHora dataHoraInicio;
     private int duracaoHoras;
-    private boolean status;
+    private boolean status; // confirmado ou nao
 
     public Reserva(Espaco espaco, Usuario usuario, DataHora dataHoraInicio, int duracaoHoras) {
-        if (dataHoraInicio.getHora() + duracaoHoras >= 24) {
-            // lancar uma excessao
+        if (duracaoHoras <= 0 || duracaoHoras > 8 || dataHoraInicio.getHora() + duracaoHoras >= 24) {
+            throw new HorarioInvalidoException("A duaração não pode ser menor ou igual a zero, maior que oito e a reserva não pode passar da meia noite.");
         }
         this.espaco = espaco;
         this.usuario = usuario;
@@ -21,7 +21,8 @@ public class Reserva {
             System.out.println("Essa reserva já foi confirmada!");
         }
         else if (Centro.verificacao(this)) {
-            System.out.println("Não foi possivel confirmar a reserva por conta de conflito de horários.");
+            throw new EspacoIndisponivelException("Não foi possivel confirmar a reserva por conta de conflito de horários.");
+            // System.out.println("Não foi possivel confirmar a reserva por conta de conflito de horários.");
         }
         else {
             this.status = true;
@@ -76,25 +77,5 @@ public class Reserva {
 
     public boolean isStatus() {
         return status;
-    }
-
-    public void setEspaco(Espaco espaco) { 
-        this.espaco = espaco;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public void setDataHoraInicio(DataHora dataHoraInicio) {
-        this.dataHoraInicio = dataHoraInicio;
-    }
-
-    public void setDuracaoHoras(int duracaoHoras) {
-        this.duracaoHoras = duracaoHoras;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 }

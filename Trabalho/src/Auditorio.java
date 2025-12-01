@@ -8,7 +8,12 @@ public class Auditorio extends Espaco{
 
     // o metodo abstrato sendo implementado
     public double calcularCusto(int hora){
-        return hora * super.getTarifaBase();
+        double extra = 0;
+        if (temRefletor) {
+            extra = 10;
+        }
+
+        return hora * (super.getTarifaBase() + extra); 
     }
 
     public void exibirInfo(){

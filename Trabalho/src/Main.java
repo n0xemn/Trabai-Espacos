@@ -1,20 +1,36 @@
+import java.util.InputMismatchException;
 import java.util.Scanner; // deixar ver as associações dos usuarios
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int escolha;
+        int escolha = 0;
+
         while(true) {
             System.out.println(" -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n\n 1: Espaço \n 2: Usuario \n 3: Reserva \n -------------------------------------------------------------------------------------------------------------- ");
-            escolha = scanner.nextInt();
+            try { // caso a pessoa digite uma letra inves de um numero
+                escolha = scanner.nextInt();
+            }
+            catch(InputMismatchException e){
+                scanner.nextLine();
+                escolha = 0;
+            }
             Centro.limparTerminal();
+
             switch (escolha) {
                 case 1:
 
                     while (true) {
                         System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Espaços \n 2: Adicionar Espaço novo \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
-                        escolha = scanner.nextInt();
+                        try { // caso a pessoa digite uma letra inves de um numero
+                            escolha = scanner.nextInt();
+                        }
+                        catch(InputMismatchException e){
+                            scanner.nextLine();
+                            escolha = 0;
+                        }
                         Centro.limparTerminal();
+
                         switch (escolha) {
                             case 1:
 
@@ -28,86 +44,181 @@ public class Main {
                                 break;
                             case 2:
 
-                                int idaux, capacidadeaux;
-                                String nomeaux, tipoDeQuadraaux, tipoDeQuadroaux;
-                                double tarifaaux;
-                                boolean temProjetoraux = false;
-
-                                System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Adicionar uma sala \n 2: Adicionar uma quadra \n 3: Adicionar um auditório \n -------------------------------------------------------------------------------------------------------------- ");
-                                escolha = scanner.nextInt();
-                                Centro.limparTerminal();
-                                switch (escolha) {
-                                    case 1:
-
-                                        System.out.println("Digite o ID da Sala");
-                                        idaux = scanner.nextInt();
-                                        System.out.println("Digite a capacidade da Sala");
-                                        capacidadeaux = scanner.nextInt();
-                                        System.out.println("Digite o nome da Sala");
+                                while (true) {
+                                    
+                                    int idaux, capacidadeaux;
+                                    String nomeaux, tipoDeQuadraaux, tipoDeQuadroaux;
+                                    double tarifaaux;
+                                    boolean temProjetoraux = false;
+    
+                                    System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Adicionar uma sala \n 2: Adicionar uma quadra \n 3: Adicionar um auditório \n 4: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
+                                    try { // caso a pessoa digite uma letra inves de um numero
+                                        escolha = scanner.nextInt();
+                                    }
+                                    catch(InputMismatchException e){
                                         scanner.nextLine();
-                                        nomeaux = scanner.nextLine();
-                                        System.out.println("Digite o tipo do quadro da Sala");
-                                        tipoDeQuadroaux = scanner.nextLine();
-                                        System.out.println("Digite o tarifa da Sala");
-                                        tarifaaux = scanner.nextDouble();
+                                        escolha = 0;
+                                    }
+                                    Centro.limparTerminal();
 
-                                        Sala sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
-                                        Centro.addEspaco(sala);
-                                        Centro.limparTerminal();
-
+                                    switch (escolha) {
+                                        case 1:
+    
+                                            System.out.println("Digite o ID da Sala");
+                                            try {
+                                                idaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite a capacidade da Sala");
+                                            try {
+                                                capacidadeaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite o nome da Sala");
+                                            scanner.nextLine();
+                                            nomeaux = scanner.nextLine();
+                                            System.out.println("Digite o tipo do quadro da Sala (\"negro\" , \"branco\" ou \"nenhum\")");
+                                            tipoDeQuadroaux = scanner.nextLine();
+                                            System.out.println("Digite o tarifa da Sala");
+                                            try {
+                                                tarifaaux = scanner.nextDouble();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+    
+                                            Sala sala;
+                                            if (tipoDeQuadroaux.equals("nehro") || tipoDeQuadroaux.equals("branco")) {
+                                                sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
+                                            }
+                                            else {
+                                                sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux);
+                                            }
+                                            Centro.addEspaco(sala);
+                                            Centro.limparTerminal();
+    
+                                            break;
+                                        case 2:
+    
+                                            System.out.println("Digite o ID da Quadra");
+                                            try {
+                                                idaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite a capacidade da Quadra");
+                                            try {
+                                                capacidadeaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite o nome da Quadra");
+                                            scanner.nextLine();
+                                            nomeaux = scanner.nextLine();
+                                            System.out.println("Digite o tipo da Quadra");
+                                            tipoDeQuadraaux = scanner.nextLine();
+                                            System.out.println("Digite o tarifa da Quadra");
+                                            try {
+                                                tarifaaux = scanner.nextDouble();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+    
+                                            Quadra quadra = new Quadra(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadraaux);
+                                            Centro.addEspaco(quadra);
+                                            Centro.limparTerminal();
+    
+                                            break;
+                                        case 3:
+    
+                                            System.out.println("Digite o ID da Auditório");
+                                            try {
+                                                idaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite a capacidade da Auditório");
+                                            try {
+                                                capacidadeaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            System.out.println("Digite o nome do Auditório");
+                                            scanner.nextLine();
+                                            nomeaux = scanner.nextLine();
+                                            System.out.println("Digite \"sim\" se tiver projetor e \"nao\" se não tiver projetor no Auditório");
+                                            String simnao = scanner.nextLine();
+                                            if (simnao.equals("sim")) {
+                                                temProjetoraux = true;
+                                            }
+                                            else { // decidi que se a pessoa digitar qualquer coisa menos "sim" entra o false
+                                                temProjetoraux = false;
+                                            }
+                                            System.out.println("Digite o tarifa da Auditório");
+                                            try {
+                                                tarifaaux = scanner.nextDouble();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+    
+                                            Auditorio auditorio = new Auditorio(idaux, capacidadeaux, nomeaux, tarifaaux, temProjetoraux);
+                                            Centro.addEspaco(auditorio);
+                                            Centro.limparTerminal();
+    
+                                            break;
+                                        default:
+                                            if (escolha != 4) {
+                                                System.out.println("Escolha inválida.");
+                                            }
+                                            break;
+                                    }
+                                    if (escolha == 4) {
                                         break;
-                                    case 2:
-
-                                        System.out.println("Digite o ID da Quadra");
-                                        idaux = scanner.nextInt();
-                                        System.out.println("Digite a capacidade da Quadra");
-                                        capacidadeaux = scanner.nextInt();
-                                        System.out.println("Digite o nome da Quadra");
-                                        scanner.nextLine();
-                                        nomeaux = scanner.nextLine();
-                                        System.out.println("Digite o tipo da Quadra");
-                                        tipoDeQuadraaux = scanner.nextLine();
-                                        System.out.println("Digite o tarifa da Quadra");
-                                        tarifaaux = scanner.nextDouble();
-
-                                        Quadra quadra = new Quadra(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadraaux);
-                                        Centro.addEspaco(quadra);
-                                        Centro.limparTerminal();
-
-                                        break;
-                                    case 3:
-
-                                        System.out.println("Digite o ID da Auditório");
-                                        idaux = scanner.nextInt();
-                                        System.out.println("Digite a capacidade da Auditório");
-                                        capacidadeaux = scanner.nextInt();
-                                        System.out.println("Digite o nome do Auditório");
-                                        scanner.nextLine();
-                                        nomeaux = scanner.nextLine();
-                                        System.out.println("Digite \"sim\" se tiver projetor e \"nao\" se não tiver projetor no Auditório");
-                                        String simnao = scanner.nextLine();
-                                        if (simnao.equals("sim")) {
-                                            temProjetoraux = true;
-                                        }
-                                        else if (simnao.equals("nao")) {
-                                            temProjetoraux = false;
-                                        }
-                                        System.out.println(simnao);
-                                        System.out.println("Digite o tarifa da Auditório");
-                                        tarifaaux = scanner.nextDouble();
-
-                                        Auditorio auditorio = new Auditorio(idaux, capacidadeaux, nomeaux, tarifaaux, temProjetoraux);
-                                        Centro.addEspaco(auditorio);
-                                        Centro.limparTerminal();
-
-                                        break;
-                                    default:
-
-                                        break;
+                                    }
                                 }
                                 break;
 
                             default:
+                                if (escolha != 3) {
+                                    System.out.println("Escolha inválida.");        
+                                }
                                 break;
                         }
                         if (escolha == 3) {
@@ -119,8 +230,15 @@ public class Main {
                     
                     while (true) {
                         System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Usuarios \n 2: Adicionar Usuario novo \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
-                        escolha = scanner.nextInt();
+                        try {
+                            escolha = scanner.nextInt();
+                        }
+                        catch(InputMismatchException e){
+                            scanner.nextLine();
+                            escolha = 0;
+                        }
                         Centro.limparTerminal();
+
                         switch (escolha) {
                             case 1:
                                 int contador = 1, escolherUsu;
@@ -135,7 +253,15 @@ public class Main {
                                         contador++;
                                     }
                                     System.err.println(" ou \"-1\" pra voltar -------------------------------------------------------------------------------------------------------------- \n ");
-                                    escolherUsu = scanner.nextInt();
+                                    try {
+                                        escolherUsu = scanner.nextInt();
+                                    }
+                                    catch(InputMismatchException e) {
+                                        scanner.nextLine();
+                                        escolha = 0;
+                                        Centro.limparTerminal();
+                                        break;
+                                    }
                                     if (escolherUsu == -1) {
                                         break;
                                     }
@@ -149,7 +275,15 @@ public class Main {
                                 boolean flagaux = false;
 
                                 System.out.println("Digite o ID do Usuario");
-                                idaux = scanner.nextInt();
+                                try {
+                                    idaux = scanner.nextInt();
+                                }
+                                catch(InputMismatchException e){
+                                    scanner.nextLine();
+                                    escolha = 0;
+                                    Centro.limparTerminal();
+                                    break;
+                                }
                                 System.out.println("Digite o nome do Usuario");
                                 scanner.nextLine();
                                 nomeaux = scanner.nextLine();
@@ -175,13 +309,23 @@ public class Main {
                         if (escolha == 3) {
                             break;
                         }
+                        else {
+                            System.out.println("Escolha inválida.");
+                        }
                     }
                     break;
                 case 3:
                     while (true) {
                         System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Ver lista de Reservas \n 2: Adicionar Reserva nova \n 3: Cancelar Reserva \n 4: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
-                        escolha = scanner.nextInt();
+                        try {
+                            escolha = scanner.nextInt();
+                        }
+                        catch(InputMismatchException e){
+                            scanner.nextLine();
+                            escolha = 0;
+                        }
                         Centro.limparTerminal();
+
                         switch (escolha) {
                             case 1:
 
@@ -198,11 +342,19 @@ public class Main {
 
                                 while (true) {
                                     System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente a sua escolha \n 1: Adicionar uma reserva para um usuario já cadastrado \n 2: Adicionar uma reserva para um novo usuario \n 3: Voltar \n -------------------------------------------------------------------------------------------------------------- ");
-                                    escolha = scanner.nextInt();
+                                    try {
+                                        escolha = scanner.nextInt();
+                                    }
+                                    catch(InputMismatchException e){
+                                        scanner.nextLine();
+                                        escolha = 0;
+                                    }
                                     Centro.limparTerminal();
+
                                     int intTemp, anoaux, mesaux,  diaaux, horaInicioaux, horaaux, contador = 1, escolherUsu, escolherEspa;
                                     DataHora inicio;
                                     Reserva reservaTemp;
+
                                     switch (escolha) {
                                         case 1:
 
@@ -218,7 +370,16 @@ public class Main {
                                             }
                                             System.out.println(" -------------------------------------------------------------------------------------------------------------- "); // só pra ficar bonito
                                             contador = 1;
-                                            escolherUsu = scanner.nextInt(); // pra usar na função get da lista de usuario
+
+                                            try {
+                                                escolherUsu = scanner.nextInt(); // pra usar na função get da lista de usuario
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente do espaço que você quer reservar. ");
                                             for (Espaco it : Centro.getEspacos()) {
@@ -228,18 +389,69 @@ public class Main {
                                                 contador++;
                                             }
                                             System.out.println(" -------------------------------------------------------------------------------------------------------------- ");
-                                            escolherEspa = scanner.nextInt(); // pra usar no metodo get da lista de espacos
+
+                                            try {
+                                                escolherEspa = scanner.nextInt(); // pra usar no metodo get da lista de espacos
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
 
                                             System.out.println("Digite o ano de início da reserva");
-                                            anoaux = scanner.nextInt();
+                                            try {
+                                                anoaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite o mês de início da reserva");
-                                            mesaux = scanner.nextInt();
+                                            try {
+                                                mesaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite o dia de início da reserva");
-                                            diaaux = scanner.nextInt();
+                                            try {
+                                                diaaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite a hora de início da reserva");
-                                            horaInicioaux = scanner.nextInt();
+                                            try {
+                                                horaInicioaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite a duração em horas da reserva");
-                                            horaaux = scanner.nextInt();
+                                            try {
+                                                horaaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+
+                                            // continua daqui, ainda tem que resolver o problema de numero invalido na escolha de usuario e de espaco
 
                                             inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
                                             reservaTemp = new Reserva(Centro.getEspacos().get(escolherEspa - 1), Centro.getUsuarios().get(escolherUsu - 1), inicio, horaaux);
@@ -253,7 +465,12 @@ public class Main {
                                             Centro.limparTerminal();
 
                                             if (intTemp == 1) {
-                                                reservaTemp.confirmar();
+                                                try {
+                                                    reservaTemp.confirmar();
+                                                }
+                                                catch(EnumConstantNotPresentException e){
+                                                    e.getMessage();
+                                                }
                                             }
                                             else {
                                                 reservaTemp.cancelar();
@@ -336,6 +553,9 @@ public class Main {
                                     if (escolha == 3) {
                                         break;
                                     }
+                                    else {
+                                        System.out.println("Escolha inválida.");
+                                    }
                                 }
                                 break;
                             case 3:
@@ -358,6 +578,9 @@ public class Main {
                         }
                         if (escolha == 4) {
                             break;
+                        }
+                        else {
+                            System.out.println("Escolha inválida.");
                         }
                     }
                     break;

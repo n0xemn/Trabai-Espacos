@@ -9,7 +9,7 @@ public class Usuario {
     private String email;
     private boolean flag = false;
 
-    public Usuario(int id, String nome, String email, boolean flag) {
+    public Usuario(int id, String nome, String email, boolean flag) { // exceções
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -46,11 +46,15 @@ public class Usuario {
     }
 
     public void removeAssociacao(Reserva reser){
-        this.associacoes.remove(reser);
-        this.totalAssociacao--;
+        if (totalAssociacao != 0) {
+            System.out.println("Não existe nenhuma associação a ser removida.");
+        }
+        else {
+            this.associacoes.remove(reser);
+            this.totalAssociacao--;
+        }
     }
 
-    // n sei se vai precisar desses seters e geters todos
     public int getId() { 
         return id; 
     }

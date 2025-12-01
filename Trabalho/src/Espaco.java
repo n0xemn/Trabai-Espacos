@@ -23,7 +23,6 @@ public abstract class Espaco {
         return tarifaBase;
     }
 
-
     public int getID() {
         return id;
     }

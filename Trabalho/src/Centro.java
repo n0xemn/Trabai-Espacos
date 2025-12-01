@@ -74,7 +74,8 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         return reservas;
     }
 
-    public static void limparTerminal() { // metodo pra limpar o terminal (não fui eu que fiz)
+    // metodo pra limpar o terminal (não fui eu que fiz)
+    public static void limparTerminal() { 
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

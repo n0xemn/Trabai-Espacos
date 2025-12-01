@@ -1,5 +1,5 @@
 public class Sala extends Espaco{
-    private String tipoDeQuadro;
+    private String tipoDeQuadro = "nenhum";
 
     public Sala(int id, int capacidade, String nome, double tarifaBase){
         super(id, capacidade, nome, tarifaBase);
@@ -26,6 +26,6 @@ public class Sala extends Espaco{
         System.out.println("Nome: "+ super.getNome());
         System.out.println("Capacidade: "+ super.getCapacidade());
         System.out.println("Quadro: "+ this.tipoDeQuadro);
-        System.out.printf("Tarifa: R$%.2lf\n\n", super.getTarifaBase());
+        System.out.printf("Tarifa: R$ %.2f\n\n", super.getTarifaBase());
     }
 }

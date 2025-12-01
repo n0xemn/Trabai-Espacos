@@ -15,6 +15,6 @@ public class Quadra extends Espaco{
         System.out.println("Nome: "+ super.getNome());
         System.out.println("Capacidade: "+ super.getCapacidade());
         System.out.println("Quadra: "+ this.tipoDeQuadra);
-        System.out.printf("Tarifa: R$%.2lf\n\n", super.getTarifaBase());
+        System.out.printf("Tarifa: R$%.2f\n\n", super.getTarifaBase());
     }
 }

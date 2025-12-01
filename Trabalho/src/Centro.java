@@ -22,11 +22,11 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         Centro.totalReservas++;
     }
 
-    public static void removeReserva(Reserva reser){
+    public static void removeReserva(Reserva reser) {
         Centro.reservas.remove(reser);
     }
 
-    public static void removerReservaIndice(int indice){
+    public static void removerReservaIndice(int indice) {
         Centro.reservas.remove(indice);
     }
 

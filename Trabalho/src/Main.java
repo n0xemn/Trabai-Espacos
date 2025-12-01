@@ -101,7 +101,7 @@ public class Main {
                                             }
     
                                             Sala sala;
-                                            if (tipoDeQuadroaux.equals("nehro") || tipoDeQuadroaux.equals("branco")) {
+                                            if (tipoDeQuadroaux.equals("negro") || tipoDeQuadroaux.equals("branco")) {
                                                 sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
                                             }
                                             else {
@@ -304,13 +304,13 @@ public class Main {
 
                                 break;
                             default:
+                                if (escolha != 3) {
+                                    System.out.println("Escolha inválida.");
+                                }
                                 break;
                         }
                         if (escolha == 3) {
                             break;
-                        }
-                        else {
-                            System.out.println("Escolha inválida.");
                         }
                     }
                     break;
@@ -358,7 +358,7 @@ public class Main {
                                     switch (escolha) {
                                         case 1:
 
-                                            if (Centro.getEspacos().size() == 0 || Centro.getTotalEspacos() == 0) {
+                                            if (Centro.getUsuarios().size() == 0 || Centro.getTotalEspacos() == 0) {
                                                 System.out.println("Impossível fazer uma reserva");
                                                 break;
                                             }
@@ -371,8 +371,10 @@ public class Main {
                                             System.out.println(" -------------------------------------------------------------------------------------------------------------- "); // só pra ficar bonito
                                             contador = 1;
 
+                                            Usuario usin;
                                             try {
                                                 escolherUsu = scanner.nextInt(); // pra usar na função get da lista de usuario
+                                                usin = Centro.getUsuarios().get(escolherUsu - 1);
                                             }
                                             catch(InputMismatchException e){
                                                 scanner.nextLine();
@@ -380,6 +382,13 @@ public class Main {
                                                 Centro.limparTerminal();
                                                 break;
                                             }
+                                            catch(IndexOutOfBoundsException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            
                                             
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente do espaço que você quer reservar. ");
                                             for (Espaco it : Centro.getEspacos()) {
@@ -390,10 +399,18 @@ public class Main {
                                             }
                                             System.out.println(" -------------------------------------------------------------------------------------------------------------- ");
 
+                                            Espaco espacin;
                                             try {
                                                 escolherEspa = scanner.nextInt(); // pra usar no metodo get da lista de espacos
+                                                espacin = Centro.getEspacos().get(escolherEspa - 1);
                                             }
                                             catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            catch(IndexOutOfBoundsException e){
                                                 scanner.nextLine();
                                                 escolha = 0;
                                                 Centro.limparTerminal();
@@ -451,10 +468,8 @@ public class Main {
                                                 break;
                                             }
 
-                                            // continua daqui, ainda tem que resolver o problema de numero invalido na escolha de usuario e de espaco
-
                                             inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
-                                            reservaTemp = new Reserva(Centro.getEspacos().get(escolherEspa - 1), Centro.getUsuarios().get(escolherUsu - 1), inicio, horaaux);
+                                            reservaTemp = new Reserva(espacin, usin, inicio, horaaux);
 
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Deseja confirmar a seguinte reserva? \n -------------------------------------------------------------------------------------------------------------- ");
                                             reservaTemp.exibirInfo();
@@ -489,7 +504,15 @@ public class Main {
                                             boolean flagaux = false;
 
                                             System.out.println("Digite o ID do Usuario");
-                                            idaux = scanner.nextInt();
+                                            try {
+                                                idaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite o nome do Usuario");
                                             scanner.nextLine();
                                             nomeaux = scanner.nextLine();
@@ -505,8 +528,7 @@ public class Main {
                                             }
 
                                             Usuario usuario = new Usuario(idaux, nomeaux, emailaux, flagaux);
-                                            //Centro.addUsuario(usuario); ainda nao
-
+                                            
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Digite o número correspondente do espaço que você quer reservar. ");
                                             for (Espaco it : Centro.getEspacos()) {
                                                 System.out.print(contador +": \n");
@@ -514,33 +536,104 @@ public class Main {
                                                 System.out.println(); // só pra ficar bonito
                                                 contador++;
                                             }
-                                            escolherEspa = scanner.nextInt();
 
+                                            Espaco espacoin;
+                                            try {
+                                                escolherEspa = scanner.nextInt();
+                                                espacoin = Centro.getEspacos().get(escolherEspa);
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            catch(IndexOutOfBoundsException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
+                                            
                                             System.out.println("Digite o ano de início da reserva");
-                                            anoaux = scanner.nextInt();
+                                            try {
+                                                anoaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite o mês de início da reserva");
-                                            mesaux = scanner.nextInt();
+                                            try {
+                                                mesaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite o dia de início da reserva");
-                                            diaaux = scanner.nextInt();
+                                            try {
+                                                diaaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite a hora de início da reserva");
-                                            horaInicioaux = scanner.nextInt();
+                                            try {
+                                                horaInicioaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             System.out.println("Digite a duração em horas da reserva");
-                                            horaaux = scanner.nextInt();
+                                            try {
+                                                horaaux = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
 
                                             inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
-                                            reservaTemp = new Reserva(Centro.getEspacos().get(escolherEspa - 1), usuario, inicio, horaaux);
+                                            reservaTemp = new Reserva(espacoin, usuario, inicio, horaaux);
                                             Centro.limparTerminal();
-
+                                            
                                             System.out.println("Deseja confirmar a seguinte reserva?");
                                             reservaTemp.exibirInfo();
-
+                                            
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n 1: Confirmar \n 2: Cancelar \n --------------------------------------------------------------------------------------------------------------");
-
-                                            intTemp = scanner.nextInt();
+                                            
+                                            try {
+                                                intTemp = scanner.nextInt();
+                                            }
+                                            catch(InputMismatchException e){
+                                                scanner.nextLine();
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                break;
+                                            }
                                             Centro.limparTerminal();
-
+                                            
                                             if (intTemp == 1) {
-                                                reservaTemp.confirmar();
+                                                try {
+                                                    reservaTemp.confirmar();
+                                                    Centro.addUsuario(usuario);
+                                                }
+                                                catch(EnumConstantNotPresentException e){
+                                                    e.getMessage();
+                                                }
                                             }
                                             else {
                                                 reservaTemp.cancelar();
@@ -548,13 +641,13 @@ public class Main {
                                             
                                             break;
                                         default:
+                                            if (escolha != 3) {
+                                                System.out.println("Escolha inválida.");
+                                            }
                                             break;
                                     }
                                     if (escolha == 3) {
                                         break;
-                                    }
-                                    else {
-                                        System.out.println("Escolha inválida.");
                                     }
                                 }
                                 break;
@@ -570,17 +663,32 @@ public class Main {
                                     it.exibirInfo();
                                     contador++;
                                 }
-                                escolherReserva = scanner.nextInt();
-                                Centro.removerReservaIndice(escolherReserva - 1);
+
+                                try{
+                                    escolherReserva = scanner.nextInt();
+                                    Centro.removerReservaIndice(escolherReserva - 1);
+                                }
+                                catch(InputMismatchException e){
+                                    scanner.nextLine();
+                                    escolha = 0;
+                                    Centro.limparTerminal();
+                                    break;
+                                }
+                                catch(IndexOutOfBoundsException e){
+                                    scanner.nextLine();
+                                    escolha = 0;
+                                    Centro.limparTerminal();
+                                    break;
+                                }
                                 break;
                             default:
+                                if (escolha != 4) {
+                                    System.out.println("Escolha inválida.");
+                                }
                                 break;
                         }
                         if (escolha == 4) {
                             break;
-                        }
-                        else {
-                            System.out.println("Escolha inválida.");
                         }
                     }
                     break;

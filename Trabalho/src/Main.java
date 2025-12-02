@@ -102,13 +102,31 @@ public class Main {
     
                                             Sala sala;
                                             if (tipoDeQuadroaux.equals("negro") || tipoDeQuadroaux.equals("branco")) {
-                                                sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
+                                                try{
+                                                    sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadroaux);
+                                                    Centro.addEspaco(sala);
+                                                    Centro.limparTerminal();
+                                                }
+                                                catch(IllegalStateException e){
+                                                    escolha = 0;
+                                                    Centro.limparTerminal();
+                                                    System.out.println(e.getMessage());
+                                                    break;
+                                                }
                                             }
                                             else {
-                                                sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux);
+                                                try{
+                                                    sala = new Sala(idaux, capacidadeaux, nomeaux, tarifaaux);
+                                                    Centro.addEspaco(sala);
+                                                    Centro.limparTerminal();
+                                                }
+                                                catch(IllegalStateException e){
+                                                    escolha = 0;
+                                                    Centro.limparTerminal();
+                                                    System.out.println(e.getMessage());
+                                                    break;
+                                                }
                                             }
-                                            Centro.addEspaco(sala);
-                                            Centro.limparTerminal();
     
                                             break;
                                         case 2:
@@ -149,9 +167,18 @@ public class Main {
                                                 break;
                                             }
     
-                                            Quadra quadra = new Quadra(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadraaux);
-                                            Centro.addEspaco(quadra);
-                                            Centro.limparTerminal();
+                                            Quadra quadra;
+                                            try{
+                                                quadra = new Quadra(idaux, capacidadeaux, nomeaux, tarifaaux, tipoDeQuadraaux);
+                                                Centro.addEspaco(quadra);
+                                                Centro.limparTerminal();
+                                            }
+                                            catch(IllegalStateException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage());
+                                                break;
+                                            }
     
                                             break;
                                         case 3:
@@ -198,9 +225,18 @@ public class Main {
                                                 break;
                                             }
     
-                                            Auditorio auditorio = new Auditorio(idaux, capacidadeaux, nomeaux, tarifaaux, temProjetoraux);
-                                            Centro.addEspaco(auditorio);
-                                            Centro.limparTerminal();
+                                            Auditorio auditorio;
+                                            try{
+                                                auditorio = new Auditorio(idaux, capacidadeaux, nomeaux, tarifaaux, temProjetoraux);
+                                                Centro.addEspaco(auditorio);
+                                                Centro.limparTerminal();
+                                            }
+                                            catch(IllegalStateException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage());
+                                                break;
+                                            }
     
                                             break;
                                         default:
@@ -468,8 +504,23 @@ public class Main {
                                                 break;
                                             }
 
-                                            inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
-                                            reservaTemp = new Reserva(espacin, usin, inicio, horaaux);
+                                            try{
+                                                inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
+                                                reservaTemp = new Reserva(espacin, usin, inicio, horaaux);
+                                            }
+                                            catch(IllegalStateException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage()); 
+                                                break;
+                                            }
+                                            catch(HorarioInvalidoException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage());
+                                                break;
+                                            }
+
 
                                             System.out.println(" \n -------------------------------------------------------------------------------------------------------------- \n Deseja confirmar a seguinte reserva? \n -------------------------------------------------------------------------------------------------------------- ");
                                             reservaTemp.exibirInfo();
@@ -484,7 +535,7 @@ public class Main {
                                                     reservaTemp.confirmar();
                                                 }
                                                 catch(EnumConstantNotPresentException e){
-                                                    e.getMessage();
+                                                    System.out.println(e.getMessage());
                                                 }
                                             }
                                             else {
@@ -606,8 +657,23 @@ public class Main {
                                                 break;
                                             }
 
-                                            inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
-                                            reservaTemp = new Reserva(espacoin, usuario, inicio, horaaux);
+                                            try{
+                                                inicio = new DataHora(diaaux, mesaux, anoaux, horaInicioaux);
+                                                reservaTemp = new Reserva(espacoin, usuario, inicio, horaaux);
+                                            }
+                                            catch(IllegalStateException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage()); 
+                                                break;
+                                            }
+                                            catch(HorarioInvalidoException e){
+                                                escolha = 0;
+                                                Centro.limparTerminal();
+                                                System.out.println(e.getMessage());
+                                                break;
+                                            }
+                                            
                                             Centro.limparTerminal();
                                             
                                             System.out.println("Deseja confirmar a seguinte reserva?");
@@ -632,7 +698,7 @@ public class Main {
                                                     Centro.addUsuario(usuario);
                                                 }
                                                 catch(EnumConstantNotPresentException e){
-                                                    e.getMessage();
+                                                    System.out.println(e.getMessage());
                                                 }
                                             }
                                             else {

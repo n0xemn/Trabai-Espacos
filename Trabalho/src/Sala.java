@@ -3,14 +3,23 @@ public class Sala extends Espaco{
 
     public Sala(int id, int capacidade, String nome, double tarifaBase){
         super(id, capacidade, nome, tarifaBase);
+        if (capacidade < 0 || tarifaBase < 0) {
+            throw new IllegalStateException("Capacidade e tarifa base não podem ser negativas.");
+        }
     }
     
     public Sala(int id, int capacidade, String nome, double tarifaBase, String tipoDeQuadro){
         this(id, capacidade, nome, tarifaBase);
+        if (capacidade < 0 || tarifaBase < 0) {
+            throw new IllegalStateException("Capacidade e tarifa base não podem ser negativas.");
+        }
         this.tipoDeQuadro = tipoDeQuadro;
     }
 
     public double calcularCusto(int duracaoHoras){
+        if (duracaoHoras < 0) {
+            throw new IllegalStateException("Duração não pode ser negativa.");
+        }
         double extra = 0;
         if (this.tipoDeQuadro.equals("negro")) { // preco diferente pra cada tipo de quadro
             extra = 4;

@@ -5,6 +5,9 @@ public class DataHora {
     private int hora;
 
     public DataHora(int dia, int mes, int ano, int hora) {
+        if (dia < 0 || mes < 0 || ano < 0 || hora < 0) {
+            throw new IllegalStateException("Ano, mes, dia e hora não podem ser negativos.");
+        }
         this.dia = dia;
         this.mes = mes;
         this.ano = ano;

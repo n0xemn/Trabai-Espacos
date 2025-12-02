@@ -45,10 +45,17 @@ public class Reserva {
     }
 
     public double calcularValor() {
+        double custo = 0;
         if (espaco != null) {
-            return espaco.calcularCusto(duracaoHoras);
+            try{
+                custo = espaco.calcularCusto(duracaoHoras);
+            }
+            catch(IllegalStateException e){
+                e.getMessage();
+            }
+            return custo;
         }
-        return 0.0;
+        return custo;
     }
 
     public void exibirInfo(){

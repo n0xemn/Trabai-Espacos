@@ -3,11 +3,17 @@ public class Quadra extends Espaco{
 
     public Quadra(int id, int capacidade, String nome, double tarifaBase, String tipoDeQuadra){
         super(id, capacidade, nome, tarifaBase);
+        if (capacidade < 0 || tarifaBase < 0) {
+            throw new IllegalStateException("Capacidade e tarifa base não podem ser negativas.");
+        }
         this.tipoDeQuadra = tipoDeQuadra;
     }
 
-    public double calcularCusto(int hora){
-        return hora * super.getTarifaBase();
+    public double calcularCusto(int duracaoHoras){
+        if (duracaoHoras < 0) {
+            throw new IllegalStateException("Duração não pode ser negativa.");
+        }
+        return duracaoHoras * super.getTarifaBase();
     }
 
     public void exibirInfo(){

@@ -54,3 +54,6 @@ nao
 17
 13
 3
+
+na hora de tratar a exceção de confirmar horário eu escrevi o nome da classe de exceção errado
+EspacoIndisponivelException

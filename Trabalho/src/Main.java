@@ -1,5 +1,10 @@
 import java.util.InputMismatchException;
-import java.util.Scanner; // deixar ver as associações dos usuarios
+import java.util.Scanner;
+
+/*
+Grupo:
+Leonardo da Silva Simões
+*/
 
 public class Main {
     public static void main(String[] args) {

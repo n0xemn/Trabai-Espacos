@@ -22,27 +22,27 @@ public class Centro { // ela é estatica pq eu imagino ela como uma classe de se
         Centro.totalReservas++;
     }
 
-    public static void removeReserva(Reserva reser) {
-        Centro.reservas.remove(reser);
+    public static void removeReserva(Reserva reserva) {
+        Centro.reservas.remove(reserva);
     }
 
     public static void removerReservaIndice(int indice) {
         Centro.reservas.remove(indice);
     }
 
-    public static boolean verificacao(Reserva reservaTemp){
+    public static boolean verificacao(Reserva reserva){
         for (Reserva it : Centro.reservas) {
-            if (it.getEspaco() == reservaTemp.getEspaco()) {
-                if (it.getDataHoraInicio().getAno() == reservaTemp.getDataHoraInicio().getAno()) {
-                    if (it.getDataHoraInicio().getMes() == reservaTemp.getDataHoraInicio().getMes()) {
-                        if (it.getDataHoraInicio().getDia() == reservaTemp.getDataHoraInicio().getDia()) {
-                            if (it.getDataHoraInicio().getHora() < reservaTemp.getDataHoraInicio().getHora()) {
-                                if (it.getDataHoraInicio().getHora() + it.getDuracaoHoras() >= reservaTemp.getDataHoraInicio().getHora()) {
+            if (it.getEspaco() == reserva.getEspaco()) {
+                if (it.getDataHoraInicio().getAno() == reserva.getDataHoraInicio().getAno()) {
+                    if (it.getDataHoraInicio().getMes() == reserva.getDataHoraInicio().getMes()) {
+                        if (it.getDataHoraInicio().getDia() == reserva.getDataHoraInicio().getDia()) {
+                            if (it.getDataHoraInicio().getHora() < reserva.getDataHoraInicio().getHora()) {
+                                if (it.getDataHoraInicio().getHora() + it.getDuracaoHoras() >= reserva.getDataHoraInicio().getHora()) {
                                     return true;
                                 }
                             }
-                            else if (reservaTemp.getDataHoraInicio().getHora() < it.getDataHoraInicio().getHora()) {
-                                if (reservaTemp.getDataHoraInicio().getHora() + reservaTemp.getDuracaoHoras() >= it.getDataHoraInicio().getHora()) {
+                            else if (reserva.getDataHoraInicio().getHora() < it.getDataHoraInicio().getHora()) {
+                                if (reserva.getDataHoraInicio().getHora() + reserva.getDuracaoHoras() >= it.getDataHoraInicio().getHora()) {
                                     return true;
                                 }
                             }
